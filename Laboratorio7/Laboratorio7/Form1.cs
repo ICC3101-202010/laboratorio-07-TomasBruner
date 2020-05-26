@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Laboratorio7
 {
@@ -16,7 +19,7 @@ namespace Laboratorio7
         double segundoNumero;
         double result;
         string operacion;
-
+        List<string> operaciones = new List<string>();
 
         public Form1()
         {
@@ -91,64 +94,94 @@ namespace Laboratorio7
             {
                 pantalla.Text = "Syntax ERROR";
             }
-              
+
         }
 
         private void restar_Click(object sender, EventArgs e)
         {
-            operacion = "-";
-            primerNumero = double.Parse(pantalla.Text);
-            pantalla.Clear();
+            try
+            {
+                operacion = "-";
+                primerNumero = double.Parse(pantalla.Text);
+                pantalla.Clear();
+
+            }
+            catch (System.FormatException)
+            {
+                pantalla.Text = "Syntax ERROR";
+            }
         }
 
         private void multiplicar_Click(object sender, EventArgs e)
         {
-            operacion = "x";
-            primerNumero = double.Parse(pantalla.Text);
-            pantalla.Clear();
+            try
+            {
+                operacion = "x";
+                primerNumero = double.Parse(pantalla.Text);
+                pantalla.Clear();
+            }
+            catch (System.FormatException)
+            {
+                pantalla.Text = "Syntax ERROR";
+            }
         }
 
         private void dividir_Click(object sender, EventArgs e)
         {
-            operacion = "/";
-            primerNumero = double.Parse(pantalla.Text);
-            pantalla.Clear();
+            try
+            {
+                operacion = "/";
+                primerNumero = double.Parse(pantalla.Text);
+                pantalla.Clear();
+            }
+            catch (System.FormatException)
+            {
+                pantalla.Text = "Syntax ERROR";
+            }
         }
 
         private void resultado_Click(object sender, EventArgs e)
         {
-            segundoNumero = double.Parse(pantalla.Text);
-
-            switch (operacion)
+            try
             {
-                case "+":
-                    result = primerNumero + segundoNumero;
-                    pantalla.Text = result.ToString();
-                    break;
-                case "-":
-                    result = primerNumero - segundoNumero;
-                    pantalla.Text = result.ToString();
-                    break;
-                case "x":
-                    result = primerNumero * segundoNumero;
-                    pantalla.Text = result.ToString();
-                    break;
-                case "/":
-                    if (segundoNumero != 0)
-                    {
-                        result = primerNumero / segundoNumero;
+                segundoNumero = double.Parse(pantalla.Text);
+
+                switch (operacion)
+                {
+                    case "+":
+                        result = primerNumero + segundoNumero;
                         pantalla.Text = result.ToString();
+                        operaciones.Add(primerNumero.ToString() + "+" + segundoNumero.ToString() + "=" + result.ToString());
                         break;
-                    }
-                    else
-                    {
-                        pantalla.Text = "Math error";
+                    case "-":
+                        result = primerNumero - segundoNumero;
+                        pantalla.Text = result.ToString();
+                        operaciones.Add(primerNumero.ToString() + "-" + segundoNumero.ToString() + "=" + result.ToString());
                         break;
-                    }
-
-
+                    case "x":
+                        result = primerNumero * segundoNumero;
+                        pantalla.Text = result.ToString();
+                        operaciones.Add(primerNumero.ToString() + "x" + segundoNumero.ToString() + "=" + result.ToString());
+                        break;
+                    case "/":
+                        if (segundoNumero != 0)
+                        {
+                            result = primerNumero / segundoNumero;
+                            pantalla.Text = result.ToString();
+                            operaciones.Add(primerNumero.ToString() + "/" + segundoNumero.ToString() + "=" + result.ToString());
+                            break;
+                        }
+                        else
+                        {
+                            pantalla.Text = "Math error";
+                            break;
+                        }
+                }
             }
-            
+            catch (System.FormatException)
+            {
+                pantalla.Text = "Syntax ERROR";
+            }
 
         }
 
@@ -175,5 +208,14 @@ namespace Laboratorio7
         {
             pantalla.Text = result.ToString();
         }
+
+        private void historial_Click(object sender, EventArgs e)
+        {
+            Form2 historial = new Form2();
+            historial.Show();
+            
+        }
+       
+
     }
 }

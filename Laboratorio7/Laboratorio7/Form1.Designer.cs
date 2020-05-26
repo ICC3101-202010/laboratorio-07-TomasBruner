@@ -50,6 +50,7 @@
             this.sumar = new System.Windows.Forms.Button();
             this.ans = new System.Windows.Forms.Button();
             this.resultado = new System.Windows.Forms.Button();
+            this.historial = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -168,7 +169,7 @@
             this.pantalla.Location = new System.Drawing.Point(12, 28);
             this.pantalla.Name = "pantalla";
             this.pantalla.ReadOnly = true;
-            this.pantalla.Size = new System.Drawing.Size(258, 20);
+            this.pantalla.Size = new System.Drawing.Size(153, 20);
             this.pantalla.TabIndex = 1;
             this.pantalla.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -252,11 +253,22 @@
             this.resultado.UseVisualStyleBackColor = true;
             this.resultado.Click += new System.EventHandler(this.resultado_Click);
             // 
+            // historial
+            // 
+            this.historial.Location = new System.Drawing.Point(183, 28);
+            this.historial.Name = "historial";
+            this.historial.Size = new System.Drawing.Size(75, 23);
+            this.historial.TabIndex = 2;
+            this.historial.Text = "Historial";
+            this.historial.UseVisualStyleBackColor = true;
+            this.historial.Click += new System.EventHandler(this.historial_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 258);
+            this.Controls.Add(this.historial);
             this.Controls.Add(this.pantalla);
             this.Controls.Add(this.numero3);
             this.Controls.Add(this.punto);
@@ -308,6 +320,7 @@
         private System.Windows.Forms.Button sumar;
         private System.Windows.Forms.Button ans;
         private System.Windows.Forms.Button resultado;
+        private System.Windows.Forms.Button historial;
     }
 }
 
